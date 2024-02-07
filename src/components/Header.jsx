@@ -76,16 +76,16 @@ const Header = () => {
         </Box>
         <nav>
           <Group>
-            <Button variant='outline' leftSection={<Image src={airplane} height={25} width={25}/>}
+            <Button variant='subtle' leftSection={<Image src={airplane} height={25} width={25}/>}
             onClick={()=>navigate("/")}
             >Flights</Button>
-            <Button variant='outline' leftSection={<Image src={hotel} height={25} width={25}/>}
+            <Button variant='subtle' leftSection={<Image src={hotel} height={25} width={25}/>}
             onClick={()=>navigate("/hotels/")}
             >Hotels</Button>
-            <Button variant='outline' leftSection={<Image src={train} height={25} width={25}/>}
+            <Button variant='subtle' leftSection={<Image src={train} height={25} width={25}/>}
             onClick={()=>navigate("/trains/")}
             >Trains</Button>
-            <Button variant='outline' leftSection={<Image src={bus} height={25} width={25}/>}
+            <Button variant='subtle' leftSection={<Image src={bus} height={25} width={25}/>}
             onClick={()=>navigate("/buses/")}
             >Bus</Button>
           </Group>

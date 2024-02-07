@@ -4,9 +4,7 @@ import React from 'react'
 const ErrorPage = () => {
   return (
     <Container h='50rem' component={Center}>
-      <Title >
-      Page Not Found
-      </Title>
+      <Title>Page Not Found</Title>
       </Container>
   )
 }

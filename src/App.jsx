@@ -12,6 +12,8 @@ import Footer from './components/Footer'
 import Logout from './pages/Logout'
 import ErrorPage from './pages/ErrorPage'
 import Protected from './pages/Protected'
+import HotelDetails from './pages/hotels/HotelDetails'
+import FlightDetails from './pages/flights/FlightDetails'
 
 
 
@@ -24,11 +26,13 @@ const App = () => {
           <Route path='/' element={<Home/>} />
           <Route path='/hotels/' element={<Hotels/>} />
           <Route path='/hotel/:location' element={<Protected Component={HotelSearch} />} />
-          <Route path='/flight/:from/:to/:day' element={<FlightSearch/>}/>
+          <Route path='/hotels/:id' element={<Protected Component={HotelDetails} />}/>
+          <Route path='/flight/:from/:to/:day' element={<Protected Component={FlightSearch} />}/>
+          <Route path='/flights/:id' element={<Protected Component={FlightDetails} />}/>
           <Route path='/trains/' element={<Trains/>}/>
-          <Route path='/train/:from/:to/:day' element={<TrainSearch/>}/>
+          <Route path='/train/:from/:to/:day' element={<Protected Component={TrainSearch} />}/>
           <Route path='/buses/' element={<Buses/>}/>
-          <Route path='/bus/:from/:to/:day' element={<BusSearch/>}/>
+          <Route path='/bus/:from/:to/:day' element={<Protected Component={BusSearch} />}/>
           <Route path='/logout' element={<Logout/>}/>
           <Route path='*' element={<ErrorPage />}/>
         </Routes>

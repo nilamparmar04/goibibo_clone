@@ -1,5 +1,5 @@
 import { Center, Container, Grid, Pagination, Paper, Space } from '@mantine/core'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 
 
@@ -32,6 +32,7 @@ const location = [
 
 const TrainSearch = () => {
   const params = useParams();
+  const [trains,setTrains] = useState([]);
 
     useEffect(()=> {
         const fetchTrains = async () => {
@@ -56,9 +57,7 @@ const TrainSearch = () => {
         </Paper>
       </Grid.Col>
       <Grid.Col span={8}>
-        <Paper>
-          fsdfdsfdsfdsfdfdf
-        </Paper>
+        {}
       </Grid.Col>
     </Grid>
     <Space h={30} />

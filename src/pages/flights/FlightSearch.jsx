@@ -160,8 +160,8 @@ const FlightSearch = () => {
       </Grid>
       <Space h={30} />
       <Flex justify='space-between'>
-        <Button disabled={page === 1} variant='outline' onClick={() => setPage(page-1)}>Prev</Button>
-        <Button disabled={page === 2} variant='outline' onClick={() => setPage(page+1)}>Next</Button>
+        <Button disabled={page === 1} variant='transparent' onClick={() => setPage(page-1)}>Prev</Button>
+        <Button disabled={page === 2} variant='transparent' onClick={() => setPage(page+1)}>Next</Button>
       </Flex>
       <Space h={30} />
     </Container>
