@@ -1,5 +1,6 @@
+import { Text, Title } from '@mantine/core';
 import { notifications } from '@mantine/notifications';
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 
 const Protected = (props) => {
@@ -9,8 +10,8 @@ const Protected = (props) => {
         let login = localStorage.getItem("token");
         const showNotification = () => {
             notifications.show({
-                title:"We notify you that",
-                message:"You need to Login",
+                title:<Title order={2}>We Notify You That</Title>,
+                message:<Title c='dark' order={1}>You Need To Login</Title>,
             })
         }
         if(!login){

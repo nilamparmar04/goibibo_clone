@@ -8,7 +8,7 @@ const Offers = () => {
 
     useEffect(()=>{
         const fetchOffers = async () => {
-            const results = await fetch(`https://academics.newtonschool.co/api/v1/bookingportals/offers?filter={"type":"${activeTab}"}`,{
+            const results = await fetch(`https://academics.newtonschool.co/api/v1/bookingportals/offers?filter={"type":"${activeTab}"}&limit=29`,{
                 headers:{
                     "projectID":"f104bi07c490"
                 }
@@ -21,12 +21,12 @@ const Offers = () => {
         fetchOffers();
     },[activeTab])
   return (
-    <Container>
+    <Container size='xl'>
         <Paper shadow='sm'  withBorder p='lg' radius='lg'>
             <Stack gap='lg'>
                 <Title order={2} ta='center'>Offers For You</Title>
-                <Tabs variant='pills' defaultValue="ALL" value={activeTab} onChange={setActiveTab}>
-                    <Tabs.List>
+                <Tabs variant='pills' defaultValue="ALL" value={activeTab} onChange={setActiveTab} >
+                    <Tabs.List grow>
                         <Tabs.Tab value='ALL'>All</Tabs.Tab>
                         <Tabs.Tab value='FLIGHTS'>Flights</Tabs.Tab>
                         <Tabs.Tab value='HOTELS'>Hotels</Tabs.Tab>
@@ -34,7 +34,7 @@ const Offers = () => {
                     </Tabs.List>
                     <Tabs.Panel value='ALL'>
                         <Carousel
-                        my="20"
+                            my="20"
                             height={200}
                             slideSize="40.333%"
                             slideGap="sm"

@@ -22,7 +22,7 @@ const OffersTrains = () => {
         fetchOffers();
     },[])
   return (
-    <Container>
+    <Container size='xl'>
         <Carousel
         my="20"
             height={200}

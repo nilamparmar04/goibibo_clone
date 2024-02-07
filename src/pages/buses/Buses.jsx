@@ -4,14 +4,15 @@ import OffersBuses from '../../components/OffersBuses';
 
 const Buses = () => {
   return (
-    <Container>
-      <Space h={30}/> 
+    <Container size='xl'>
+      <Space h={70}/> 
       <SearchBuses/>
-      <Space h={30}/>
+      <Space h={70}/>
       <Center>
         <Title>Offers</Title>
       </Center> 
       <OffersBuses/>
+      <Space h={100} />
     </Container>
   )
 }

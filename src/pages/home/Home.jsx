@@ -1,17 +1,17 @@
-import { Space } from '@mantine/core'
+import { Container, Space } from '@mantine/core'
 import Offers from '../../components/Offers'
 import SearchFlights from '../../components/SearchFlights'
 import Footer from '../../components/Footer'
 
 const Home = () => {
   return (
-    <div >
-        <Space h="30"/>
+    <Container size='xl'>
+        <Space h="150"/>
         <SearchFlights/>
-        <Space h="30"/>
+        <Space h="100"/>
         <Offers/>
-        <Space h="30" />
-    </div>
+        <Space h="150" />
+    </Container>
   )
 }
 

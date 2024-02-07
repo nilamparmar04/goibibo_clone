@@ -1,4 +1,4 @@
-import { Button, Container, Grid, Group, Paper, Space, TextInput } from '@mantine/core'
+import { Autocomplete, Button, Container, Grid, Group, Paper, Space, TextInput } from '@mantine/core'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
@@ -8,11 +8,13 @@ const SearchTrains = () => {
     const [day,setDay] = useState("");
     const navigate = useNavigate();
   return (
-    <Container>
+    <Container size='xl'>
     <Paper shadow='sm' radius="lg" withBorder p="xl">
             <Grid>
                     <Grid.Col span={4}>
-                    <TextInput
+                    <Autocomplete
+                    size='lg'
+                    variant='filled'
                             value={source}
                             onChange={(e)=>setSource(e.target.value)}
                             label="From"
@@ -21,7 +23,9 @@ const SearchTrains = () => {
                     </Grid.Col>
                     <Grid.Col span={4}>
 
-                    <TextInput
+                    <Autocomplete 
+                    size='lg'
+                    variant='filled'
                             value={destination}
                             onChange={(e)=>setDestination(e.target.value)}
                             label="To"
@@ -29,7 +33,9 @@ const SearchTrains = () => {
                             />
                     </Grid.Col>
                     <Grid.Col span={4}>
-                            <TextInput
+                            <Autocomplete 
+                            size='lg'
+                            variant='filled'
                                     value={day}
                                     onChange={(e)=>setDay(e.target.value)}
                                     label="Day"

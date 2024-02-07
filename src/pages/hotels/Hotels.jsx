@@ -22,14 +22,15 @@ const Hotels = () => {
        fetchHotels()
     },[])
   return (
-    <Container>
-      <Space h={30} />
+    <Container size='xl'>
+      <Space h={70} />
       <SearchHotels/>
-      <Space h={30}/>
+      <Space h={70}/>
       <Center>
         <Title>Offers</Title>
       </Center>
       <OffersHotels/>
+      <Space h={100} />
     </Container>
   )
 }

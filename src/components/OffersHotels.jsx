@@ -5,45 +5,45 @@ import { useEffect, useState } from 'react'
 
 
 const OffersHotels = () => {
-    const [offers,setOffers] = useState([]);
+  const [offers, setOffers] = useState([]);
 
-    useEffect(()=>{
-        const fetchOffers = async () => {
-            const results = await fetch(`https://academics.newtonschool.co/api/v1/bookingportals/offers?limit=50`,{
-                headers:{
-                    "projectID":"f104bi07c490"
-                }
-            });
-            const { data } = await results.json();
-            setOffers(data.offers);
-            console.log(data);
+  useEffect(() => {
+    const fetchOffers = async () => {
+      const results = await fetch(`https://academics.newtonschool.co/api/v1/bookingportals/offers?limit=50`, {
+        headers: {
+          "projectID": "f104bi07c490"
         }
+      });
+      const { data } = await results.json();
+      setOffers(data.offers);
+      console.log(data);
+    }
 
-        fetchOffers();
-    },[])
+    fetchOffers();
+  }, [])
   return (
-    <Container>
-        <Carousel
-                        my="20"
-                            height={200}
-                            slideSize="40.333%"
-                            slideGap="sm"
-                            align="start"
-                            
-                        >
-                        {
-                            offers.map((e)=>{
-                                return (
-                                    <Carousel.Slide key={e.id}>
-                                        <Card shadow="sm" withBorder radius='md' style={{display:'flex',flexDirection:'row',alignItems:'center',gap:20}}> 
-                                            <Image src={e.newHeroUrl} alt="error" style={{height:150,width:150}} radius="md"/>
-                                            <Text>{e.pTl}</Text>
-                                        </Card>
-                                    </Carousel.Slide>
-                                )
-                            }) 
-                        }
-                        </Carousel>
+    <Container size='xl'>
+      <Carousel
+        my="20"
+        height={200}
+        slideSize="40.333%"
+        slideGap="sm"
+        align="start"
+
+      >
+        {
+          offers.map((e) => {
+            return (
+              <Carousel.Slide key={e.id}>
+                <Card shadow="sm" withBorder radius='md' style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 20 }}>
+                  <Image src={e.newHeroUrl} alt="error" style={{ height: 150, width: 150 }} radius="md" />
+                  <Text>{e.pTl}</Text>
+                </Card>
+              </Carousel.Slide>
+            )
+          })
+        }
+      </Carousel>
     </Container>
   )
 }

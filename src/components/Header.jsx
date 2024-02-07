@@ -37,12 +37,13 @@ const Header = () => {
       })
     });
     const data = await result.json();
+    console.log(name,emailSignup,passwordSignup)
     storetokenInLS(data.token);
     console.log(data);
     setName("");
     setEmailSignup("");
     setPasswordSignup("");
-    location.reload();
+    // location.reload();
   }
   const login = async () => {
     const result = await fetch("https://academics.newtonschool.co/api/v1/bookingportals/login",{

@@ -1,8 +1,13 @@
+import { Center, Container, Title } from '@mantine/core'
 import React from 'react'
 
 const ErrorPage = () => {
   return (
-    <div>ErrorPage</div>
+    <Container h='50rem' component={Center}>
+      <Title >
+      Page Not Found
+      </Title>
+      </Container>
   )
 }
 

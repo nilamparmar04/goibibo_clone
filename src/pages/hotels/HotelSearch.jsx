@@ -1,4 +1,4 @@
-import { Badge, Box, Center, Container, Flex, Grid, Group, Image, Pagination, Paper, Space, Stack, Text, Title, rem } from '@mantine/core';
+import { Badge, Box, Button, Container, Flex, Grid, Group, Image, Paper, Space, Stack, Text, Title, } from '@mantine/core';
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 
@@ -6,10 +6,13 @@ const HotelSearch = () => {
   const params = useParams();
     console.log(params.location);
     const [hotels,setHotels] = useState([]);
+    // const [images,setImages] = useState([]);
+    const [page,setPage] = useState(1);
+
 
   useEffect(()=> {
     const fetchHotels = async () => {
-     const results = await fetch(`https://academics.newtonschool.co/api/v1/bookingportals/hotel?search={"location":"${params.location}"}&limit=30`,{
+     const results = await fetch(`https://academics.newtonschool.co/api/v1/bookingportals/hotel?search={"location":"${params.location}"}&limit=5&page=${page}`,{
          headers:{
              "projectID":"f104bi07c490"
          }
@@ -20,7 +23,7 @@ const HotelSearch = () => {
     } 
 
     fetchHotels()
- },[])
+ },[page, params.location])
   return (
     <Container>
       <Space h={30}/>
@@ -69,9 +72,10 @@ const HotelSearch = () => {
         </Grid.Col>
       </Grid>
       <Space h={30}/>
-      <Center>
-        <Pagination total={20}/>
-      </Center>
+      <Flex justify='space-between'>
+        <Button disabled={page === 1} variant='outline' onClick={()=>setPage(page-1)}>Prev</Button>
+        <Button disabled={page === 6} variant='outline' onClick={()=>setPage(page+1)}>Next</Button>
+      </Flex>
       <Space h={30}/>
     </Container>
   )
