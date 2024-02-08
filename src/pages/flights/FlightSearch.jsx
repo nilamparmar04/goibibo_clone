@@ -1,7 +1,7 @@
 import { Box, Button, Center, Collapse, Container, Flex, Grid, Paper, RangeSlider, SimpleGrid, Space, Stack, Table, Text, Title, rem } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks';
 import { notifications } from '@mantine/notifications';
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
 
 const elements = [
@@ -11,6 +11,7 @@ const elements = [
 
 
 const FlightSearch = () => {
+  const paperRef = useRef();
   const params = useParams();
   const from = params.from.split(' ')[1].replace(/([()])/g, '');
   const to = params.to.split(' ')[1].replace(/([()])/g, '')
@@ -123,6 +124,7 @@ const FlightSearch = () => {
                   style: 'currency',
                   currency: 'INR',
                 });
+
                 return (
                   <Paper key={e._id} shadow='sm' p={rem(40)}>
                     <Flex gap={20} justify="space-around" align="center">
