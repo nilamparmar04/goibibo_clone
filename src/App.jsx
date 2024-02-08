@@ -13,7 +13,6 @@ import Logout from './pages/Logout'
 import ErrorPage from './pages/ErrorPage'
 import Protected from './pages/Protected'
 import HotelDetails from './pages/hotels/HotelDetails'
-import FlightDetails from './pages/flights/FlightDetails'
 
 
 
@@ -28,7 +27,6 @@ const App = () => {
           <Route path='/hotel/:location' element={<Protected Component={HotelSearch} />} />
           <Route path='/hotels/:id' element={<Protected Component={HotelDetails} />}/>
           <Route path='/flight/:from/:to/:day' element={<Protected Component={FlightSearch} />}/>
-          <Route path='/flights/:id' element={<Protected Component={FlightDetails} />}/>
           <Route path='/trains/' element={<Trains/>}/>
           <Route path='/train/:from/:to/:day' element={<Protected Component={TrainSearch} />}/>
           <Route path='/buses/' element={<Buses/>}/>

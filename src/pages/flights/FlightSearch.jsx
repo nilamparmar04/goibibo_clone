@@ -1,7 +1,8 @@
 import { Box, Button, Center, Collapse, Container, Flex, Grid, Paper, RangeSlider, SimpleGrid, Space, Stack, Table, Text, Title, rem } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks';
+import { notifications } from '@mantine/notifications';
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 
 const elements = [
   { type: "ADULT", check: "15 Kgs (1 piece only)", cabin: "7 Kgs (1 piece only)" },
@@ -13,7 +14,7 @@ const FlightSearch = () => {
   const params = useParams();
   const from = params.from.split(' ')[1].replace(/([()])/g, '');
   const to = params.to.split(' ')[1].replace(/([()])/g, '')
-
+  const navigate = useNavigate();
   const rows = elements.map((element) => (
     <Table.Tr key={element.type}>
       <Table.Td>{element.type}</Table.Td>
@@ -28,6 +29,7 @@ const FlightSearch = () => {
   console.log(valuePrice)
   const [flights, setFlights] = useState([]);
   const [page,setPage] = useState(1);
+  
   useEffect(() => {
     const fetchFlights = async () => {
       const results = await fetch(`https://academics.newtonschool.co/api/v1/bookingportals/flight?search={"source":"${from}","destination":"${to}"}&day=${params.day}&limit=10&page=${page}`, {
@@ -36,36 +38,41 @@ const FlightSearch = () => {
         }
       });
       const { data } = await results.json();
-      console.log(data);
+      console.log(data)
       setFlights(data.flights);
-      console.log(params.from.split(' ')[1].replace(/([()])/g, ''))
     }
     fetchFlights()
-  }, [page ])
-
+  }, [from, page, params.day, params.from, params.to, to])
 
   const bookFlight = async (id) => {
-    console.log(id)
-    const res = await fetch("https://academics.newtonschool.co/api/v1/bookingportals/booking", {
-      method:"POST",
-      headers: {
-        "Content-Type": "application/json",
-        "projectID": "f104bi07c490",
-        "Authorization": `Bearer ${localStorage.getItem("token")}`
+    const result = await fetch("https://academics.newtonschool.co/api/v1/bookingportals/booking",{
+      method:'POST',
+      headers:{
+        "Content-Type":"application/json",
+        "projectID":"f104bi07c490",
+        "Authorization":`Bearer ${localStorage.getItem("token")}`
       },
-      body: JSON.stringify({
-        "bookingType": "flight",
-        "bookingDetails": {
-          "flightId": `${id}`,
-          "startDate": "2023-10-09T10:03:53.554+00:00", // Start Travel Date and Time
-          "endDate": "2023-10-09T10:03:53.554+00:00" // End Travel Date and Time
-        }
+      body:JSON.stringify({
+        "bookingType" : "flight",
+          "bookingDetails" : {
+          "flightId" : `${id}`,
+          "startDate" : "2023-10-09T10:03:53.554+00:00",
+          "endDate" : "2023-10-09T10:03:53.554+00:00" 
+          }
+        })
       })
+      navigate("/",{replace:true})
+    const data = await result.json();
+    notifications.show({
+      title:<Title fw={300} c="gray">We Notify You That</Title>,
+      message:(
+        <Title c="dark" fw={500}>{data.message}</Title>
+      )
     })
-    const data = await res.json();
-    console.log(data);
-  }
-  return (
+ }
+  
+  return <>
+  {from !== to ? (
     <Container>
       <Space h={30} />
       <Grid>
@@ -131,7 +138,7 @@ const FlightSearch = () => {
                         <Text size='lg' fw={700}>{currency.format(e.ticketPrice)}</Text>
                       </Box>
                       <Stack>
-                        <Button color='orange' onClick={() => bookFlight(e._id)}>Book</Button>
+                        <Button color='orange' onClick={()=>bookFlight(e._id)}>Book</Button>
                         <Button onClick={toggle}>Flight Details</Button>
                       </Stack>
                     </Flex>
@@ -165,7 +172,10 @@ const FlightSearch = () => {
       </Flex>
       <Space h={30} />
     </Container>
-  )
+  ): (
+    <Navigate to="*" />
+    )}
+  </>
 }
 
 export default FlightSearch

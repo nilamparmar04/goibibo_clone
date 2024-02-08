@@ -6,6 +6,7 @@ import './index.css'
 import '@mantine/core/styles.css';
 import '@mantine/carousel/styles.css';
 import '@mantine/notifications/styles.css';
+import '@mantine/dates/styles.css';
 
 import {AuthProvider} from './store/auth.jsx';
 import { Notifications } from '@mantine/notifications';
