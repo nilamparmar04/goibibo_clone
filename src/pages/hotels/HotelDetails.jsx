@@ -1,12 +1,13 @@
 import {  Box, Button, Container, Flex,  Grid,  Image, Paper, SimpleGrid, Space, Stack, Text, Title } from '@mantine/core';
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { Carousel } from '@mantine/carousel';
 import { CiLocationOn } from "react-icons/ci";
 import { notifications } from '@mantine/notifications';
 
 
 const HotelDetails = () => {
+  const navigate = useNavigate();
     const params = useParams();
     const [hotel,setHotel] = useState({});
     const [room,setRoom] = useState([]);
@@ -53,6 +54,8 @@ const HotelDetails = () => {
             <Title c="dark" fw={500}>{data.message}</Title>
           )
         })
+
+        navigate("/hotels")
      }
 
 

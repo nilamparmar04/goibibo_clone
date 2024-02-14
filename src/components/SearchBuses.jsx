@@ -1,6 +1,30 @@
-import { Autocomplete, Button, Container, Grid, Group, Paper, Space, TextInput } from '@mantine/core';
+import { Autocomplete, Button, Container, Grid, Group, Paper, Space } from '@mantine/core';
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+
+const data = [
+  "Mumbai, Maharashtra",
+  "Delhi, National Capital Territory of Delhi",
+  "Bangalore, Karnataka",
+  "Kolkata, West Bengal",
+  "Chennai, Tamil Nadu",
+  "Hyderabad, Telangana",
+  "Pune, Maharashtra",
+  "Ahmedabad, Gujarat",
+  "Surat, Gujarat",
+  "Jaipur, Rajasthan",
+  "Lucknow, Uttar Pradesh",
+  "Nagpur, Maharashtra",
+  "Thane, Maharashtra",
+  "Bhopal, Madhya Pradesh",
+  "Visakhapatnam, Andhra Pradesh",
+  "Patna, Bihar",
+  "Vadodara, Gujarat",
+  "Ludhiana, Punjab",
+  "Agra, Uttar Pradesh",
+  "Nashik, Maharashtra",
+  "Faridabad, Haryana"
+]
 
 const SearchBuses = () => {
   const [source, setSource] = useState("");
@@ -15,8 +39,9 @@ const SearchBuses = () => {
             <Autocomplete
               size='lg'
               variant='filled'
+              data={data}
               value={source}
-              onChange={(e) => setSource(e.target.value)}
+              onChange={setSource}
               label="From"
               placeholder="Enter city"
             />
@@ -26,8 +51,9 @@ const SearchBuses = () => {
             <Autocomplete
               size='lg'
               variant='filled'
+              data={data}
               value={destination}
-              onChange={(e) => setDestination(e.target.value)}
+              onChange={setDestination}
               label="To"
               placeholder="Enter city"
             />
@@ -36,8 +62,9 @@ const SearchBuses = () => {
             <Autocomplete
               size='lg'
               variant='filled'
+              data={["Mon","Tue","Wed","Thu","Fri","Sat","Sun"]}
               value={day}
-              onChange={(e) => setDay(e.target.value)}
+              onChange={setDay}
               label="Day"
               placeholder="eg. Mon,Tue,Wed.."
             />

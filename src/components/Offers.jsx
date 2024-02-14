@@ -1,4 +1,4 @@
-import { Card, Center, Container, Flex, Group, Image, Pagination, Paper, Space, Stack, Tabs, Text, Title } from '@mantine/core'
+import { Card, Container, Image, Paper, Stack, Tabs, Text, Title } from '@mantine/core'
 import {Carousel} from '@mantine/carousel'
 import  { useEffect, useState } from 'react'
 
@@ -11,7 +11,7 @@ const Offers = () => {
             const results = await fetch(`https://academics.newtonschool.co/api/v1/bookingportals/offers?filter={"type":"${activeTab}"}&limit=29`,{
                 headers:{
                     "projectID":"f104bi07c490"
-                }
+                },
             });
             const { data } = await results.json();
             setOffers(data.offers);

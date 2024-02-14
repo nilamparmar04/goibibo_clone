@@ -1,20 +1,31 @@
-import { Badge, Box, Button, Container, Flex, Grid, Group, Image, Paper, RangeSlider, Rating, SimpleGrid, Space, Stack, Text, Title, } from '@mantine/core';
+import { Badge, Box, Button, Container, Flex, Grid, Group, Image, Paper, RangeSlider, Rating, SimpleGrid, Slider, Space, Stack, Text, Title, } from '@mantine/core';
 import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom';
 import { IoLocationOutline } from "react-icons/io5";
+
+
+
+const marks = [
+  { value: 1, label: '1' },
+  { value: 2, label: '2' },
+  { value: 3, label: '3' },
+  { value: 4, label: '4' },
+  { value: 5, label: '5' },
+];
+
 
 const HotelSearch = () => {
   const params = useParams();
     console.log(params.location);
     const [hotels,setHotels] = useState([]);
     const [page,setPage] = useState(1);
-    const [valuePrice, setValuePrice] = useState([2400, 2450]);
-    const [valueDuration, setValueDuration] = useState([2, 5]);
+    // const [valuePrice, setValuePrice] = useState([2400, 2450]);
+    const [valueRating, setValueRating] = useState(4);
 
 
   useEffect(()=> {
     const fetchHotels = async () => {
-     const results = await fetch(`https://academics.newtonschool.co/api/v1/bookingportals/hotel?search={"location":"${params.location}"}&limit=5&page=${page}`,{
+     const results = await fetch(`https://academics.newtonschool.co/api/v1/bookingportals/hotel?search={"location":"${params.location}"}&filter={"rating":"${valueRating}"}&limit=5&page=${page}`,{
          headers:{
              "projectID":"f104bi07c490"
          }
@@ -25,8 +36,9 @@ const HotelSearch = () => {
     } 
 
     fetchHotels()
- },[page, params.location])
-  return (
+ },[page, params.location, valueRating])
+  return <>
+  (
     <Container>
       <Space h={30}/>
       <Grid>
@@ -37,33 +49,19 @@ const HotelSearch = () => {
                 <Title order={3}>Filters</Title>
               </Box>
               <Box>
-                <Text fw={600}>Departure</Text>
-                <Space h={10} />
-                <SimpleGrid cols={2}>
-                  <Button variant='light'>Before 6AM</Button>
-                  <Button variant='light'>6AM - 12PM</Button>
-                  <Button variant='light'>12PM - 6PM</Button>
-                  <Button variant='light'>After 6AM</Button>
-                </SimpleGrid>
-              </Box>
-              <Box>
-                <Text fw={600}>Stops</Text>
-                <Space h={14} />
-                <SimpleGrid cols={2}>
-                  <Button variant='light'>Direct</Button>
-                  <Button variant='light'>1-Stop</Button>
-                  <Button variant='light'>2+ Stops</Button>
-                </SimpleGrid>
-              </Box>
-              <Box>
-                <Text fw={600}>Price</Text>
+                <Text fw={600}>Ratings</Text>
                 <Space h={30} />
-                <RangeSlider defaultValue={[2450, 2400]} max={2450} min={2400} labelAlwaysOn value={valuePrice} onChange={setValuePrice} />
-              </Box>
-              <Box>
-                <Text fw={600}>Onward Duration</Text>
-                <Space h={30} />
-                <RangeSlider defaultValue={[1, 7]} max={7} min={0} labelAlwaysOn value={valueDuration} onChange={setValueDuration} />
+                <Slider
+                  value={valueRating}
+                  onChange={setValueRating}
+                  defaultValue={3}
+                  min={1}
+                  max={5}
+                  label={(val) => marks.find((mark) => mark.value === val).label}
+                  step={1}
+                  marks={marks}
+                  styles={{ markLabel: { display: 'none' } }}
+                />
               </Box>
             </Stack>
           </Paper>
@@ -71,7 +69,7 @@ const HotelSearch = () => {
         <Grid.Col span={7}>
           <Stack>
             {hotels.slice(0,5).map((e) => {
-            1
+              1
               return (
                 <Paper p={20} key={e._id} c='dark' shadow='sm' withBorder component={Link} to={`/hotels/${e._id}`}>
                   <Flex gap={20}>
@@ -110,6 +108,7 @@ const HotelSearch = () => {
       <Space h={30}/>
     </Container>
   )
+  </>
 }
 
 export default HotelSearch

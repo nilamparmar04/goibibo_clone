@@ -1,20 +1,29 @@
-import { Box, Button, Center, Collapse, Container, Flex, Grid, Paper, RangeSlider, SimpleGrid, Space, Stack, Table, Text, Title, rem } from '@mantine/core'
+import { Box, Button, Center, Collapse, Container, Flex, Grid, Paper, RangeSlider, SimpleGrid, Slider, Space, Stack, Table, Text, Title, rem } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks';
 import { notifications } from '@mantine/notifications';
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
 
 const elements = [
   { type: "ADULT", check: "15 Kgs (1 piece only)", cabin: "7 Kgs (1 piece only)" },
 ];
 
+const marks = [
+  { value: 1, label: '1' },
+  { value: 2, label: '2' },
+  { value: 3, label: '3' },
+  { value: 4, label: '4' },
+  { value: 5, label: '5' },
+  { value: 6, label: '6' },
+  { value: 7, label: '7' },
+];
 
 
 const FlightSearch = () => {
-  const paperRef = useRef();
   const params = useParams();
   const from = params.from.split(' ')[1].replace(/([()])/g, '');
   const to = params.to.split(' ')[1].replace(/([()])/g, '')
+  const [stop, setStop] = useState(0);
   const navigate = useNavigate();
   const rows = elements.map((element) => (
     <Table.Tr key={element.type}>
@@ -24,8 +33,8 @@ const FlightSearch = () => {
     </Table.Tr>
   ));
   const [opened, { toggle }] = useDisclosure();
-  const [valuePrice, setValuePrice] = useState([2400, 2450]);
-  const [valueDuration, setValueDuration] = useState([2, 5]);
+  const [valuePrice, setValuePrice] = useState([2000, 3000]);
+  const [valueDuration, setValueDuration] = useState(5);
   console.log(valueDuration)
   console.log(valuePrice)
   const [flights, setFlights] = useState([]);
@@ -33,7 +42,7 @@ const FlightSearch = () => {
   
   useEffect(() => {
     const fetchFlights = async () => {
-      const results = await fetch(`https://academics.newtonschool.co/api/v1/bookingportals/flight?search={"source":"${from}","destination":"${to}"}&day=${params.day}&limit=10&page=${page}`, {
+      const results = await fetch(`https://academics.newtonschool.co/api/v1/bookingportals/flight?search={"source":"${from}","destination":"${to}"}&day=${params.day}&filter={"duration":${valueDuration},"stops":${stop},"ticketPrice":{"$lte":${valuePrice[1]},"$gte":${valuePrice[0]}}}&limit=10&page=${page}`, {
         headers: {
           "projectID": "f104bi07c490"
         }
@@ -43,7 +52,7 @@ const FlightSearch = () => {
       setFlights(data.flights);
     }
     fetchFlights()
-  }, [from, page, params.day, params.from, params.to, to])
+  }, [from, page, params.day, params.from, params.to, stop, to, valueDuration, valuePrice])
 
   const bookFlight = async (id) => {
     const result = await fetch("https://academics.newtonschool.co/api/v1/bookingportals/booking",{
@@ -67,7 +76,10 @@ const FlightSearch = () => {
     notifications.show({
       title:<Title fw={300} c="gray">We Notify You That</Title>,
       message:(
-        <Title c="dark" fw={500}>{data.message}</Title>
+        <>
+          <Title fw={500} c='dark'>{data.booking.flight.source} to {data.booking.flight.destination}</Title>
+          <Title fw={500} order={3}>Your Arival Time is {data.booking.flight.arrivalTime}</Title>
+        </>
       )
     })
  }
@@ -80,10 +92,10 @@ const FlightSearch = () => {
         <Grid.Col span={4}>
           <Paper shadow='sm' p={15}>
             <Stack gap={20}>
-              <Box>
-                <Title order={3}>Filters</Title>
-              </Box>
-              <Box>
+            <Box>
+                  <Title order={3}>Filters</Title>
+                </Box>
+                {/* <Box>
                 <Text fw={600}>Departure</Text>
                 <Space h={10} />
                 <SimpleGrid cols={2}>
@@ -92,26 +104,36 @@ const FlightSearch = () => {
                   <Button variant='light'>12PM - 6PM</Button>
                   <Button variant='light'>After 6AM</Button>
                 </SimpleGrid>
-              </Box>
-              <Box>
-                <Text fw={600}>Stops</Text>
-                <Space h={14} />
-                <SimpleGrid cols={2}>
-                  <Button variant='light'>Direct</Button>
-                  <Button variant='light'>1-Stop</Button>
-                  <Button variant='light'>2+ Stops</Button>
-                </SimpleGrid>
-              </Box>
-              <Box>
-                <Text fw={600}>Price</Text>
-                <Space h={30} />
-                <RangeSlider defaultValue={[2450, 2400]} max={2450} min={2400} labelAlwaysOn value={valuePrice} onChange={setValuePrice} />
-              </Box>
-              <Box>
-                <Text fw={600}>Onward Duration</Text>
-                <Space h={30} />
-                <RangeSlider defaultValue={[1, 7]} max={7} min={0} labelAlwaysOn value={valueDuration} onChange={setValueDuration} />
-              </Box>
+              </Box> */}
+                <Box>
+                  <Text fw={600}>Stops</Text>
+                  <Space h={14} />
+                  <SimpleGrid cols={2}>
+                    <Button variant='light' onClick={() => setStop(0)}>Direct</Button>
+                    <Button variant='light' onClick={() => setStop(1)}>1-Stop</Button>
+                    <Button variant='light' onClick={() => setStop(2)}>2+ Stops</Button>
+                  </SimpleGrid>
+                </Box>
+                <Box>
+                  <Text fw={600}>Price</Text>
+                  <Space h={30} />
+                  <RangeSlider defaultValue={[2000, 5000]} max={3000} min={2000} labelAlwaysOn value={valuePrice} onChange={setValuePrice} />
+                </Box>
+                <Box>
+                  <Text fw={600}>Onward Duration</Text>
+                  <Space h={30} />
+                  <Slider
+                    defaultValue={5}
+                    value={valueDuration}
+                    onChange={setValueDuration}
+                    label={(val) => marks.find((mark) => mark.value === val).label}
+                    step={1}
+                    min={1}
+                    max={7}
+                    marks={marks}
+                    styles={{ markLabel: { display: 'none' } }}
+                  />
+                </Box>
             </Stack>
           </Paper>
         </Grid.Col>

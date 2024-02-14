@@ -32,7 +32,7 @@ const OffersBuses = () => {
                 {
                     offers.map((e) => {
                         return (
-                            <Carousel.Slide key={e.id}>
+                            <Carousel.Slide key={e._id}>
                                 <Card shadow="sm" withBorder radius='md' style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 20 }}>
                                     <Image src={e.newHeroUrl} alt="error" style={{ height: 150, width: 150 }} radius="md" />
                                     <Text>{e.pTl}</Text>
