@@ -4,14 +4,17 @@ import hotel from "./../assets/icons/hotel.png"
 import train from "./../assets/icons/train.png"
 import bus from "./../assets/icons/bus.png"
 import bag from "./../assets/icons/shopping-bag.png"
-import { Link, Navigate, useNavigate } from 'react-router-dom'
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom'
 import { useDisclosure } from '@mantine/hooks'
 import { useState } from 'react'
 import { useAuth } from '../store/auth'
+import backgroundImg from './../assets/images/curve_img.svg'
 
 
 const Header = () => {
+  const location = useLocation();
   const navigate = useNavigate();
+  console.log(location.pathname);
   const [openedToggle,{toggle}] = useDisclosure(false);
   const [opened,{open,close}] = useDisclosure(false);
   const [name,setName] = useState("");
@@ -67,7 +70,8 @@ const Header = () => {
   }
 
   return (
-    <Paper shadow='sm' >
+    <>
+    <Paper shadow='sm'>
     <Flex justify='space-around' align='center' h="64px">
         <Box>
           <Link to={"/"} style={{textDecoration:'none'}}>
@@ -76,16 +80,16 @@ const Header = () => {
         </Box>
         <nav>
           <Group>
-            <Button variant='subtle' leftSection={<Image src={airplane} height={25} width={25}/>}
+            <Button variant='subtle' color="dark" leftSection={<Image src={airplane} height={25} width={25}/>}
             onClick={()=>navigate("/")}
             >Flights</Button>
-            <Button variant='subtle' leftSection={<Image src={hotel} height={25} width={25}/>}
+            <Button variant='subtle' color="dark" leftSection={<Image src={hotel} height={25} width={25}/>}
             onClick={()=>navigate("/hotels/")}
             >Hotels</Button>
-            <Button variant='subtle' leftSection={<Image src={train} height={25} width={25}/>}
+            <Button variant='subtle' color="dark" leftSection={<Image src={train} height={25} width={25}/>}
             onClick={()=>navigate("/trains/")}
             >Trains</Button>
-            <Button variant='subtle' leftSection={<Image src={bus} height={25} width={25}/>}
+            <Button variant='subtle' color="dark" leftSection={<Image src={bus} height={25} width={25}/>}
             onClick={()=>navigate("/buses/")}
             >Bus</Button>
           </Group>
@@ -110,8 +114,8 @@ const Header = () => {
             {isLoggedIn ? 
                 <Avatar/>
                 :
-              <Button onClick={open} variant='light' leftSection={<Avatar radius="xl" color='white' size={25} />} >LOGIN/SIGNUP</Button>
-                }
+                <Button onClick={open} variant='outline' leftSection={<Avatar radius="xl" color='white' size={25} />} radius='md'>LOGIN / SIGNUP</Button>
+              }
             </HoverCard.Target>
             <HoverCard.Dropdown>
               <Box>
@@ -123,7 +127,7 @@ const Header = () => {
                 <Button onClick={()=>{navigate("/logout")}}>Logout</Button>
                 :
                 <Button onClick={open} variant='filled'>Login/Sign Up</Button>
-                }
+              }
               </Stack>
             </HoverCard.Dropdown>
           </HoverCard>
@@ -157,6 +161,8 @@ const Header = () => {
       </Collapse>
     </Modal>
     </Paper>
+    <Image src={backgroundImg}  style={{position:'absolute',zIndex:'-1',top:10,display:location.pathname === "/" ? 'block' :'none'}}/>
+    </>
   )
 }
 

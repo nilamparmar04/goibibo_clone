@@ -46,8 +46,7 @@ const SearchFlights = () => {
         <Grid>
           <Grid.Col span={4}>
             <Autocomplete
-            size='lg'
-              variant='filled'
+            size='xl'
               data={data}
               value={source}
               onChange={setSource}
@@ -57,8 +56,7 @@ const SearchFlights = () => {
           </Grid.Col>
           <Grid.Col span={4}>
             <Autocomplete
-            size='lg'
-              variant='filled'
+            size='xl'
               data={data}
               value={destination}
               onChange={setDestination}
@@ -68,8 +66,7 @@ const SearchFlights = () => {
           </Grid.Col>
           <Grid.Col span={4}>
             <Autocomplete
-            size='lg'
-              variant='filled'
+            size='xl'
               data={['Mon', 'Tue', 'Wed', "Thu", "Fri", "Sat"]}
               value={day}
               onChange={setDay}
@@ -80,7 +77,7 @@ const SearchFlights = () => {
         </Grid>
         <Space h={20} />
         <Group justify='center'>
-          <Button color='orange' onClick={() => navigate(`/flight/${source}/${destination}/${day}`)}>Search Flights</Button>
+          <Button size='lg' color='orange' onClick={() => navigate(`/flight/${source}/${destination}/${day}`)}>Search Flights</Button>
         </Group>
       </Paper>
 

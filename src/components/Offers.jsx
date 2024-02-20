@@ -27,10 +27,10 @@ const Offers = () => {
                 <Title order={2} ta='center'>Offers For You</Title>
                 <Tabs variant='pills' defaultValue="ALL" value={activeTab} onChange={setActiveTab} >
                     <Tabs.List grow>
-                        <Tabs.Tab value='ALL'>All</Tabs.Tab>
-                        <Tabs.Tab value='FLIGHTS'>Flights</Tabs.Tab>
-                        <Tabs.Tab value='HOTELS'>Hotels</Tabs.Tab>
-                        <Tabs.Tab value='RAILS'>Trains</Tabs.Tab>
+                        <Tabs.Tab color="orange" value='ALL'>All</Tabs.Tab>
+                        <Tabs.Tab color="orange" value='FLIGHTS'>Flights</Tabs.Tab>
+                        <Tabs.Tab color="orange" value='HOTELS'>Hotels</Tabs.Tab>
+                        <Tabs.Tab color="orange" value='RAILS'>Trains</Tabs.Tab>
                     </Tabs.List>
                     <Tabs.Panel value='ALL'>
                         <Carousel
