@@ -51,7 +51,6 @@ const SearchTrains = () => {
             <Autocomplete
               data={location}
               size='lg'
-              variant='filled'
               value={source}
               onChange={setSource}
               label="From"
@@ -63,7 +62,6 @@ const SearchTrains = () => {
             <Autocomplete
               data={location}
               size='lg'
-              variant='filled'
               value={destination}
               onChange={setDestination}
               label="To"
@@ -74,7 +72,6 @@ const SearchTrains = () => {
             <Autocomplete
               data={days}
               size='lg'
-              variant='filled'
               value={day}
               onChange={setDay}
               label="Day"

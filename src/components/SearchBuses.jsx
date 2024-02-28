@@ -38,7 +38,6 @@ const SearchBuses = () => {
           <Grid.Col span={4}>
             <Autocomplete
               size='lg'
-              variant='filled'
               data={data}
               value={source}
               onChange={setSource}
@@ -50,7 +49,6 @@ const SearchBuses = () => {
 
             <Autocomplete
               size='lg'
-              variant='filled'
               data={data}
               value={destination}
               onChange={setDestination}
@@ -61,7 +59,6 @@ const SearchBuses = () => {
           <Grid.Col span={4}>
             <Autocomplete
               size='lg'
-              variant='filled'
               data={["Mon","Tue","Wed","Thu","Fri","Sat","Sun"]}
               value={day}
               onChange={setDay}
