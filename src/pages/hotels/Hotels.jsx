@@ -24,7 +24,9 @@ const Hotels = () => {
   return (
     <Container size='xl'>
       <Space h={70} />
+      <Container>
       <Title c="white" order={2}>Book Hotels & Homestays</Title>
+      </Container>
       <Space h={50} />
       <SearchHotels/>
       <Space h={70}/>

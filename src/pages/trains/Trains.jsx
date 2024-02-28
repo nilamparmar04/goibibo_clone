@@ -8,11 +8,11 @@ const Trains = () => {
 
   return (
     <Container size='xl'>
-        <Space h={70}/>
-        <Title c='white' >Train Ticket Booking</Title>
-        <Space h={70}/>
+        <Space h={30}/>
+        <Title ta='center' c='white' >Train Ticket Booking</Title>
+        <Space h={30}/>
         <SearchTrains/>
-        <Space h={70} />
+        <Space h={90} />
         <Center>
             <Title>Offers</Title>
         </Center>

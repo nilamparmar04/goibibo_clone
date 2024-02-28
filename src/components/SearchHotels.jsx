@@ -1,4 +1,4 @@
-import { Autocomplete, Button, Container, Flex, Grid, Paper, Space, TextInput, rem } from '@mantine/core'
+import { Autocomplete, Button, Container, Flex, Grid, Paper, Space, rem } from '@mantine/core'
 import { DateInput } from '@mantine/dates';
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -28,14 +28,13 @@ const data = [
 const Search = () => {
   const [location, setLocation] = useState("");
   const navigate = useNavigate();
-  const [valueCheckIn, setValueCheckIn] = useState(null)
-  const [valueCheckOut, setValueCheckOut] = useState(null)
+  const [valueCheckIn, setValueCheckIn] = useState(null);
+  const [valueCheckOut, setValueCheckOut] = useState(null);
   return (
     <Container size='xl'>
         <Grid>
           <Grid.Col span={6}>
       <Paper shadow='sm' radius="lg" withBorder p="xl">
-
           <Flex direction="column" gap={rem(20)}>
             <Autocomplete
               data={data}

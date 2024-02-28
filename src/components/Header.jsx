@@ -4,15 +4,18 @@ import hotel from "./../assets/icons/hotel.png"
 import train from "./../assets/icons/train.png"
 import bus from "./../assets/icons/bus.png"
 import bag from "./../assets/icons/shopping-bag.png"
-import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useDisclosure } from '@mantine/hooks'
 import { useState } from 'react'
 import { useAuth } from '../store/auth'
 import backgroundImg from './../assets/images/curve_img.svg'
+import backgroundCircle from '../assets/images/background_circle.svg';
+import backgroundBlueCircle from '../assets/images/background_blue_circle.svg';
+import backgroundWave from '../assets/images/background_wave.svg';
 
 
 const Header = () => {
-  const location = useLocation();
+  const locationReact = useLocation();
   const navigate = useNavigate();
   console.log(location.pathname);
   const [openedToggle,{toggle}] = useDisclosure(false);
@@ -46,7 +49,7 @@ const Header = () => {
     setName("");
     setEmailSignup("");
     setPasswordSignup("");
-    // location.reload();
+    location.reload();
   }
   const login = async () => {
     const result = await fetch("https://academics.newtonschool.co/api/v1/bookingportals/login",{
@@ -161,7 +164,10 @@ const Header = () => {
       </Collapse>
     </Modal>
     </Paper>
-    <Image src={backgroundImg}  style={{position:'absolute',zIndex:'-1',top:10,display:location.pathname === "/" ? 'block' :'none'}}/>
+    <Image src={backgroundImg}  style={{position:'absolute',zIndex:'-1',top:10,display:locationReact.pathname === "/" ? 'block' :'none'}}/>
+    <Image src={backgroundCircle}  style={{position:'absolute',zIndex:'-1',top:10,display:locationReact.pathname === "/hotels/" ? 'block' :'none'}}/>
+    <Image src={backgroundBlueCircle}  style={{position:'absolute',zIndex:'-1',top:10,display:locationReact.pathname === "/buses/" ? 'block' :'none'}}/>
+    <Image src={backgroundWave}  style={{position:'absolute',zIndex:'-1',top:10,display:locationReact.pathname === "/trains/" ? 'block' :'none'}}/>
     </>
   )
 }
