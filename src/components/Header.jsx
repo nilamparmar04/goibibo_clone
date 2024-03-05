@@ -82,6 +82,7 @@ const Header = () => {
           </Link>
         </Box>
         <nav>
+          <div className='large_screen_nav'>
           <Group>
             <Button variant='subtle' color="dark" leftSection={<Image src={airplane} height={25} width={25}/>}
             onClick={()=>navigate("/")}
@@ -96,21 +97,40 @@ const Header = () => {
             onClick={()=>navigate("/buses/")}
             >Bus</Button>
           </Group>
+          </div>
+          <div className='small_screen_nav'>
+          <Group>
+            <Button variant='subtle' color="dark" leftSection={<Image src={airplane} height={25} width={25}/>}
+            onClick={()=>navigate("/")}
+            ></Button>
+            <Button variant='subtle' color="dark" leftSection={<Image src={hotel} height={25} width={25}/>}
+            onClick={()=>navigate("/hotels/")}
+            ></Button>
+            <Button variant='subtle' color="dark" leftSection={<Image src={train} height={25} width={25}/>}
+            onClick={()=>navigate("/trains/")}
+            ></Button>
+            <Button variant='subtle' color="dark" leftSection={<Image src={bus} height={25} width={25}/>}
+            onClick={()=>navigate("/buses/")}
+            ></Button>
+          </Group>
+          </div>
         </nav>
-          <Group >
-          <Tooltip label="Access your bookings, easy cancellation, date change and much more">
-            <Box>
-              <Group gap={10}>
-              <Box>
-                <Image src={bag} height={20} width={20}/>
-              </Box>
-              <Box>
-                <Text size='xs'>My Trips</Text>
-                <Text fw={600}>Manage Booking</Text>
-              </Box>
-              </Group>
-            </Box>
-        </Tooltip>
+          <Group>
+            <div className='my_trip'>
+              <Tooltip label="Access your bookings, easy cancellation, date change and much more">
+                <Box>
+                  <Group gap={10}>
+                      <Box>
+                        <Image src={bag} height={20} width={20}/>
+                      </Box>
+                      <Box>
+                        <Text size='xs'>My Trips</Text>
+                        <Text fw={600}>Manage Booking</Text>
+                      </Box>
+                  </Group>
+                </Box>
+              </Tooltip>
+            </div>
         <Box>
           <HoverCard>
             <HoverCard.Target>

@@ -2,10 +2,11 @@ import { Box, Container, Grid, Paper, Stack, Text, Title } from '@mantine/core'
 
 const Footer = () => {
   return (
-    <Paper p="xl">
+    <footer>
+    <Paper p="xl" >
     <Container>
-      <Grid>
-        <Grid.Col span={3}>
+      <Grid classNames='footer_data'>
+        <Grid.Col span={{sm:4,lg:3}}>
           <Stack gap={20}>
             <Box>
               <Title style={{textTransform:'uppercase'}} order={4}>Our Products</Title>
@@ -23,7 +24,7 @@ const Footer = () => {
             </Stack>
           </Stack>
         </Grid.Col>
-        <Grid.Col span={3}>
+        <Grid.Col span={{sm:4,lg:3}}>
           <Stack gap={20}>
             <Box>
               <Title style={{textTransform:'uppercase'}} order={4}>about us</Title>
@@ -41,7 +42,7 @@ const Footer = () => {
             </Stack>
           </Stack>
         </Grid.Col>
-        <Grid.Col span={3}>
+        <Grid.Col span={{sm:4,lg:3}}>
           <Stack gap={20}>
             <Box>
               <Title style={{textTransform:'uppercase'}} order={4}>Travel Essentials</Title>
@@ -54,7 +55,7 @@ const Footer = () => {
             </Stack>
           </Stack>
         </Grid.Col>
-        <Grid.Col span={3}>
+        <Grid.Col span={{sm:4,lg:3}}>
           <Stack gap={20}>
             <Box>
               <Title style={{textTransform:'uppercase'}} order={4}>More Links</Title>
@@ -73,6 +74,7 @@ const Footer = () => {
       </Grid>
     </Container>
     </Paper>
+    </footer>
   )
 }
 

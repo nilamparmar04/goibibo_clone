@@ -43,8 +43,8 @@ const SearchFlights = () => {
   return (
     <Container size='xl'>
       <Paper shadow='sm' radius="lg" withBorder p="xl">
-        <Grid>
-          <Grid.Col span={4}>
+        <Grid classNames='footer_data'>
+          <Grid.Col span={{sm:12,md:4}}>
             <Autocomplete
             size='xl'
               data={data}
@@ -54,7 +54,7 @@ const SearchFlights = () => {
               placeholder="Enter city or airport"
             />
           </Grid.Col>
-          <Grid.Col span={4}>
+          <Grid.Col span={{sm:12,md:4}}>
             <Autocomplete
             size='xl'
               data={data}
@@ -64,7 +64,7 @@ const SearchFlights = () => {
               placeholder="Enter city or airport"
             />
           </Grid.Col>
-          <Grid.Col span={4}>
+          <Grid.Col span={{sm:12,md:4}}>
             <Autocomplete
             size='xl'
               data={['Mon', 'Tue', 'Wed', "Thu", "Fri", "Sat"]}
