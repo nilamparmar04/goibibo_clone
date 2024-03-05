@@ -47,7 +47,7 @@ const SearchTrains = () => {
     <Container size='xl'>
       <Paper shadow='sm' radius="lg" withBorder p="xl">
         <Grid>
-          <Grid.Col span={4}>
+          <Grid.Col span={{sm:12,md:4}}>
             <Autocomplete
               data={location}
               size='lg'
@@ -57,7 +57,7 @@ const SearchTrains = () => {
               placeholder="Enter city"
             />
           </Grid.Col>
-          <Grid.Col span={4}>
+          <Grid.Col span={{sm:12,md:4}}>
 
             <Autocomplete
               data={location}
@@ -68,7 +68,7 @@ const SearchTrains = () => {
               placeholder="Enter city"
             />
           </Grid.Col>
-          <Grid.Col span={4}>
+          <Grid.Col span={{sm:12,md:4}}>
             <Autocomplete
               data={days}
               size='lg'

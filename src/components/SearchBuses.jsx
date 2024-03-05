@@ -35,7 +35,7 @@ const SearchBuses = () => {
     <Container size='xl'>
       <Paper shadow='sm' radius="lg" withBorder p="xl">
         <Grid>
-          <Grid.Col span={4}>
+          <Grid.Col span={{sm:12,md:4}}>
             <Autocomplete
               size='lg'
               data={data}
@@ -45,7 +45,7 @@ const SearchBuses = () => {
               placeholder="Enter city"
             />
           </Grid.Col>
-          <Grid.Col span={4}>
+          <Grid.Col span={{sm:12,md:4}}>
 
             <Autocomplete
               size='lg'
@@ -56,7 +56,7 @@ const SearchBuses = () => {
               placeholder="Enter city"
             />
           </Grid.Col>
-          <Grid.Col span={4}>
+          <Grid.Col span={{sm:12,md:4}}>
             <Autocomplete
               size='lg'
               data={["Mon","Tue","Wed","Thu","Fri","Sat","Sun"]}

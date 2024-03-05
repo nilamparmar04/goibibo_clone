@@ -1,10 +1,12 @@
 import { Card, Container, Image, Paper, Stack, Tabs, Text, Title } from '@mantine/core'
 import {Carousel} from '@mantine/carousel'
 import  { useEffect, useState } from 'react'
+import { useMediaQuery } from '@mantine/hooks';
 
 const Offers = () => {
     const [offers,setOffers] = useState([]);
     const [activeTab,setActiveTab] = useState("ALL");
+    const matches = useMediaQuery('(min-width:500px');
 
     useEffect(()=>{
         const fetchOffers = async () => {
@@ -25,12 +27,12 @@ const Offers = () => {
         <Paper shadow='sm'  withBorder p='lg' radius='lg'>
             <Stack gap='lg'>
                 <Title order={2} ta='center'>Offers For You</Title>
-                <Tabs variant='pills' defaultValue="ALL" value={activeTab} onChange={setActiveTab} >
-                    <Tabs.List grow>
-                        <Tabs.Tab color="orange" value='ALL'>All</Tabs.Tab>
-                        <Tabs.Tab color="orange" value='FLIGHTS'>Flights</Tabs.Tab>
-                        <Tabs.Tab color="orange" value='HOTELS'>Hotels</Tabs.Tab>
-                        <Tabs.Tab color="orange" value='RAILS'>Trains</Tabs.Tab>
+                <Tabs variant='pills' defaultValue="ALL" value={activeTab} onChange={setActiveTab}>
+                    <Tabs.List>
+                        <Tabs.Tab color="orange" value='ALL' style={{fontSize:matches ? '' : 7}}>All</Tabs.Tab>
+                        <Tabs.Tab color="orange" value='FLIGHTS' style={{fontSize:matches ? '' : 7}}>Flights</Tabs.Tab>
+                        <Tabs.Tab color="orange" value='HOTELS' style={{fontSize:matches ? '' : 7}}>Hotels</Tabs.Tab>
+                        <Tabs.Tab color="orange" value='RAILS' style={{fontSize:matches ? '' : 7}}>Trains</Tabs.Tab>
                     </Tabs.List>
                     <Tabs.Panel value='ALL'>
                         <Carousel
@@ -39,6 +41,7 @@ const Offers = () => {
                             slideSize="40.333%"
                             slideGap="sm"
                             align="start"
+                            orientation={matches ? "horizontal" : 'vertical'}
                             
                         >
                         {
@@ -64,6 +67,7 @@ const Offers = () => {
                                 slideSize="40.333%"
                                 slideGap="sm"
                                 align="start"
+                                orientation={matches ? "horizontal" : 'vertical'}
                                 
                             >
                             {
@@ -89,6 +93,7 @@ const Offers = () => {
                             slideSize="40.333%"
                             slideGap="sm"
                             align="start"
+                            orientation={matches ? "horizontal" : 'vertical'}
                             
                         >
                         {
@@ -114,6 +119,7 @@ const Offers = () => {
                             slideSize="40.333%"
                             slideGap="sm"
                             align="start"
+                            orientation={matches ? "horizontal" : 'vertical'}
                             
                         >
                         {

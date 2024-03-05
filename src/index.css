@@ -18,12 +18,13 @@
 }
 
 
-
 @media (min-width:1000px) {
     .small_screen_nav{
         display: none;
     }
 }
+
+
 
 
 @media (max-width:1000px) {
@@ -36,9 +37,11 @@
 }
 
 @media (max-width:800px) {
-    .footer_data{
-        flex-direction: column;
-        background-color: green;
+    .small_screen_nav{
+        display: none;
+    }
+    .login_btn{
+        display: none;
     }
 }
 

@@ -1,11 +1,11 @@
-import { Avatar, Box, Button, Collapse, Flex, Group, HoverCard, Image, Modal, Paper, PasswordInput, Stack, Text, TextInput, Title, Tooltip } from '@mantine/core'
+import { Avatar, Box, Button, Collapse, Drawer, Flex, Group, HoverCard, Image, Modal, Paper, PasswordInput, Stack, Text, TextInput, Title, Tooltip } from '@mantine/core'
 import airplane from './../assets/icons/airplane.png'
 import hotel from "./../assets/icons/hotel.png"
 import train from "./../assets/icons/train.png"
 import bus from "./../assets/icons/bus.png"
 import bag from "./../assets/icons/shopping-bag.png"
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { useDisclosure } from '@mantine/hooks'
+import { useDisclosure, useMediaQuery } from '@mantine/hooks'
 import { useState } from 'react'
 import { useAuth } from '../store/auth'
 import backgroundImg from './../assets/images/curve_img.svg'
@@ -17,7 +17,6 @@ import backgroundWave from '../assets/images/background_wave.svg';
 const Header = () => {
   const locationReact = useLocation();
   const navigate = useNavigate();
-  console.log(location.pathname);
   const [openedToggle,{toggle}] = useDisclosure(false);
   const [opened,{open,close}] = useDisclosure(false);
   const [name,setName] = useState("");
@@ -27,6 +26,8 @@ const Header = () => {
   const [passwordLogin,setPasswordLogin] = useState("");
   const [loginControl,setLoginContol] = useState(false);
   const { storetokenInLS , isLoggedIn } = useAuth();
+  const matches = useMediaQuery('(min-width:800px');
+
 
   const register = async () => {
     const result = await fetch("https://academics.newtonschool.co/api/v1/bookingportals/signup",{
@@ -71,6 +72,7 @@ const Header = () => {
     setPasswordLogin("");
     location.reload();
   }
+  
 
   return (
     <>
@@ -78,7 +80,7 @@ const Header = () => {
     <Flex justify='space-around' align='center' h="64px">
         <Box>
           <Link to={"/"} style={{textDecoration:'none'}}>
-          <Title><span style={{color:'#f57842'}}>go</span><span style={{color:'#0c7ef0'}}>ibibo</span></Title>
+          <Title><span style={{color:'#f57842',fontSize:matches ? 40 : 25}}>go</span><span style={{color:'#0c7ef0',fontSize:matches ? 40 : 25}}>ibibo</span></Title>
           </Link>
         </Box>
         <nav>
@@ -137,7 +139,7 @@ const Header = () => {
             {isLoggedIn ? 
                 <Avatar/>
                 :
-                <Button onClick={open} variant='outline' leftSection={<Avatar radius="xl" color='white' size={25} />} radius='md'>LOGIN / SIGNUP</Button>
+              <Button style={{fontSize:matches ? 10 : 9}} onClick={open} variant='outline' leftSection={<Avatar radius="xl" color='white' size={25} />} radius='md'>LOGIN / SIGNUP</Button>
               }
             </HoverCard.Target>
             <HoverCard.Dropdown>

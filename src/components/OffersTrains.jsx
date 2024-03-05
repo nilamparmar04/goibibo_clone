@@ -1,11 +1,14 @@
 import { Carousel } from '@mantine/carousel';
 import { Card, Container, Image, Text } from '@mantine/core';
+import { useMediaQuery } from '@mantine/hooks';
 import { useEffect, useState } from 'react'
 
 
 
 const OffersTrains = () => {
     const [offers,setOffers] = useState([]);
+    const matches = useMediaQuery('(min-width:500px');
+
 
     useEffect(()=>{
         const fetchOffers = async () => {
@@ -29,6 +32,8 @@ const OffersTrains = () => {
             slideSize="40.333%"
             slideGap="sm"
             align="start"  
+            orientation={matches ? "horizontal" : 'vertical'}
+
         >
         {
             offers.map((e)=>{

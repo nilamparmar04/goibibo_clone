@@ -33,7 +33,7 @@ const Search = () => {
   return (
     <Container size='xl'>
         <Grid>
-          <Grid.Col span={6}>
+          <Grid.Col span={{sm:12,md:6}}>
       <Paper shadow='sm' radius="lg" withBorder p="xl">
           <Flex direction="column" gap={rem(20)}>
             <Autocomplete
@@ -43,8 +43,7 @@ const Search = () => {
               onChange={setLocation}
               placeholder="Enter City You Want To Stay"
               />
-
-            <Flex justify='center' gap='lg'>
+            <Flex gap='lg'>
               <DateInput size='xl'
                 label="Check-in"
                 defaultValue={new Date()}
